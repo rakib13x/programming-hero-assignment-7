@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import SingleCard from "../SingleCard/SingleCard";
+import SingleCard from "../CardDetail/CardDetail";
 import CheckOut from "../Checkout/CheckOut";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
