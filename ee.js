@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SingleCard from "../SingleCard/SingleCard";
 import CheckOut from "../Checkout/CheckOut";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Cards = () => {
@@ -10,18 +10,14 @@ const Cards = () => {
   const [totalCreditHours, setTotalCreditHours] = useState(20);
 
   const handleCourseSelect = (course) => {
-    const courseNumber = selectedCourses.length + 1;
+    const newTotalCreditHours = totalCreditHours - course.credit;
 
-    if (
-      selectedCourses.some((selectedCourse) => selectedCourse.id === course.id)
-    ) {
-      toast.error("You can't select the same course more than once");
-    } else if (totalCreditHours - course.credit < 0) {
+    if (newTotalCreditHours < 0) {
+      // Check if selecting the course would exceed the limit
       toast.error("Total credit hours cannot exceed 20");
     } else {
-      const updatedTotalCreditHours = totalCreditHours - course.credit;
-      setSelectedCourses([...selectedCourses, { ...course, courseNumber }]);
-      setTotalCreditHours(updatedTotalCreditHours);
+      setSelectedCourses([...selectedCourses, course]);
+      setTotalCreditHours(newTotalCreditHours);
     }
   };
 
@@ -51,7 +47,6 @@ const Cards = () => {
         selectedCourses={selectedCourses}
         totalCreditHours={totalCreditHours}
       />
-      <ToastContainer position="bottom-right" autoClose={3000} />
     </div>
   );
 };

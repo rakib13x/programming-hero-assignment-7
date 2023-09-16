@@ -1,25 +1,12 @@
 import React from "react";
 
-const CheckOut = ({ selectedCourses }) => {
-  if (!Array.isArray(selectedCourses)) {
-    selectedCourses = [];
-  }
-
-  const totalCreditHours = selectedCourses.reduce(
-    (total, course) => total + course.credit,
-    0
-  );
-  const totalPrice = selectedCourses.reduce(
-    (total, course) => total + course.price,
-    0
-  );
-
+const CheckOut = ({ selectedCourses, totalCreditHours }) => {
   return (
     <div className="w-3/12 mt-4 ml-auto">
       <div className="card bg-gray-50 shadow-xl">
         <div className="card-body">
           <h2 className="text-blue-500 font-bold text-xl mb-4">
-            Checkout Summary
+            Credit Hour Remaining: {totalCreditHours} hr
           </h2>
           <div className="mb-2">
             <strong>Selected Courses:</strong>
@@ -32,10 +19,12 @@ const CheckOut = ({ selectedCourses }) => {
             </ul>
           </div>
           <div className="mb-2">
-            <strong>Total Credit Hours:</strong> {totalCreditHours}
+            <strong>Total Credit Hours:</strong> {20 - totalCreditHours} / 20
           </div>
           <div className="mb-2">
-            <strong>Total Price:</strong> {totalPrice} USD
+            <strong>Total Price:</strong>{" "}
+            {selectedCourses.reduce((total, course) => total + course.price, 0)}{" "}
+            USD
           </div>
         </div>
       </div>
