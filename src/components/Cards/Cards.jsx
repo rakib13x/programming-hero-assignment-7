@@ -37,7 +37,7 @@ const Cards = () => {
   }, []);
 
   return (
-    <div className="w-9/12">
+    <div className="w-9/12 ">
       <div className="grid lg:grid-cols-3 gap-8 md:grid-cols-2 p-10">
         {jsonData.map((course) => (
           <SingleCard

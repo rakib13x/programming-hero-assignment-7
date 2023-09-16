@@ -32,7 +32,7 @@ const CheckOut = ({ selectedCourses, totalCreditHours }) => {
           </ul>
         </div>
         <div style={borderStyle} className="mb-2">
-          <strong>Total Credit Hours:</strong> {20 - totalCreditHours} / 20
+          <strong>Total Credit Hours:</strong> {20 - totalCreditHours}
         </div>
         <div className="mb-2">
           <strong>Total Price:</strong>{" "}
