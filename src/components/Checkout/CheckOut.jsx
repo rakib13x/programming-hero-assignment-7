@@ -1,24 +1,41 @@
 import React from "react";
 
-const CheckOut = () => {
+const CheckOut = ({ selectedCourses }) => {
+  if (!Array.isArray(selectedCourses)) {
+    selectedCourses = [];
+  }
+
+  const totalCreditHours = selectedCourses.reduce(
+    (total, course) => total + course.credit,
+    0
+  );
+  const totalPrice = selectedCourses.reduce(
+    (total, course) => total + course.price,
+    0
+  );
+
   return (
-    <div className="absolute pr-6 w-3/12 top-24 right-0">
+    <div className="w-3/12 mt-4 ml-auto">
       <div className="card bg-gray-50 shadow-xl">
-        <figure></figure>
         <div className="card-body">
-          <p className="text-blue-500 font-bold border-b border-gray-300 pb-4">
-            Credit Hour Remaining 7 hr
-          </p>
-          <div>
-            <p className="font-bold pt-2 border-b border-gray-300 pb-4">
-              Course Name
-            </p>
+          <h2 className="text-blue-500 font-bold text-xl mb-4">
+            Checkout Summary
+          </h2>
+          <div className="mb-2">
+            <strong>Selected Courses:</strong>
+            <ul>
+              {selectedCourses.map((course) => (
+                <li key={course.id}>
+                  {course.courseNumber}. {course.title}
+                </li>
+              ))}
+            </ul>
           </div>
-          <div>
-            <p className="border-b border-gray-300 pb-4">Total Credit Hour:</p>
+          <div className="mb-2">
+            <strong>Total Credit Hours:</strong> {totalCreditHours}
           </div>
-          <div>
-            <p className="">Total Price:{} USD</p>
+          <div className="mb-2">
+            <strong>Total Price:</strong> {totalPrice} USD
           </div>
         </div>
       </div>

@@ -1,6 +1,10 @@
 import React from "react";
-import CheckOut from "../Checkout/CheckOut";
-const SingleCard = ({ course }) => {
+
+const SingleCard = ({ course, onCourseSelect }) => {
+  const handleSelectClick = () => {
+    onCourseSelect(course);
+  };
+
   return (
     <>
       <div className="h-90">
@@ -15,7 +19,10 @@ const SingleCard = ({ course }) => {
               <div>Price: {course.price}</div>
               <div>Credit: {course.credit}</div>
             </div>
-            <button className="bg-blue-500 h-8 rounded text-white">
+            <button
+              className="bg-blue-500 h-8 rounded text-white"
+              onClick={handleSelectClick}
+            >
               Select
             </button>
           </div>
@@ -24,5 +31,4 @@ const SingleCard = ({ course }) => {
     </>
   );
 };
-
 export default SingleCard;
