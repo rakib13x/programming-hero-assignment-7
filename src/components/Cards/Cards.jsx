@@ -26,7 +26,7 @@ const Cards = () => {
   };
 
   useEffect(() => {
-    fetch("src/data/data.json")
+    fetch("/data.json")
       .then((response) => response.json())
       .then((data) => {
         setJsonData(data);
